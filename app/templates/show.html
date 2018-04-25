@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SmashApp</title>
+  </head>
+  <body>
+    {% block body %}
+      <ul>
+      {% for character in result.characters %}
+        <li>{{ character.name }} : {{ character.info }}</li>
+      {% endfor %}
+      </ul>
+    {% endblock %}
+  </body>
+</html>
