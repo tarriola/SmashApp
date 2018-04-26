@@ -3,14 +3,36 @@
   <head>
     <meta charset="utf-8">
     <title>SmashApp</title>
+    <style >
+      .forms {
+        display: flex;
+        margin: 20px;
+      }
+      form {
+        margin: 10px;
+      }
+      li {
+        margin: 5px;
+      }
+    </style>
   </head>
   <body>
-    <h1>Home Page</h1>
-    <button type="button" ></button>
-    <ul>
-    {% for character in characters %}
-      <li>{{character.name}} {{character.info}}</li>
-    {% endfor %}
-    </ul>
+    <h1>Smash Characters</h1>
+    <div class="forms">
+      <form action="/add" method="get">
+          <input type="submit" value="Add">
+      </form>
+      <form action="/delete" method="get">
+          <input type="submit" name="" value="Delete">
+      </form>
+    </div>
+    <div >
+      <ul>
+      {% for character in characters %}
+        <li><a href="/{{character.name}}">{{character.name}}</a></li>
+      {% endfor %}
+      </ul>
+    </div>
+
   </body>
 </html>

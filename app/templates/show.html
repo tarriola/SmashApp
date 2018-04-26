@@ -2,15 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>SmashApp</title>
+    <title>Character</title>
   </head>
   <body>
-    {% block body %}
-      <ul>
-      {% for character in result.characters %}
-        <li>{{ character.name }} : {{ character.info }}</li>
-      {% endfor %}
-      </ul>
-    {% endblock %}
+    <h1>{{ character.name }}</h1>
+    <h2>Final Smash</h2>
+    <p>{{ character.info }}</p>
   </body>
 </html>
