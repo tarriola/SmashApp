@@ -3,10 +3,25 @@
   <head>
     <meta charset="utf-8">
     <title>Character</title>
+    <style>
+      p {
+        width: 500px;
+      }
+    </style>
   </head>
   <body>
     <h1>{{ character.name }}</h1>
     <h2>Final Smash</h2>
     <p>{{ character.info }}</p>
+    <div>
+      <h3>Edit Info:</h3>
+      <form action="/edit" method="post">
+        <input type="text" name="name" value="{{character.name}}" required>
+        <br><br>
+        <textarea name="info" rows="8" cols="30" required></textarea>
+        <br>
+        <input type="submit" name="" value="Submit">
+      </form>
+    </div>
   </body>
 </html>

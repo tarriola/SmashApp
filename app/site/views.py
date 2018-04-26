@@ -81,14 +81,43 @@ def deleteCharacter(character_name):
         return redirect(url_for('.homepage'))
     return jsonify(code)
 
-@mod.route('/edit/<character_name>', methods=['PUT'])
-def editCharacter(character_name):
-    character = Character.query.filter_by(name=character_name).first()
+# @mod.route('/edit', methods=['POST'])
+# def edit():
+
+@mod.route('/edit', methods=['POST', 'PUT'])
+def editCharacter():
+    print(request.method)
     data = request.get_json()
-    code = {'status' : 'Character doesn\'t exist'}
-    print(data['info'])
-    if character:
-        code['status'] = 'Character Updated'
-        print(code)
-        return redirect(url_for('.homepage'))
-    return jsonify(code)
+    if request.method == "POST":
+        name = request.form['name']
+        character = Character.query.filter_by(name=name).first()
+        character.info = request.form['info']
+        db.session.commit()
+    elif data:
+        name = data['name']
+        character = Character.query.filter_by(name=name).first()
+        character.info = data['info']
+        db.session.commit()
+
+    return redirect(url_for('.homepage'))
+
+
+# @mod.route('/edit/<character_name>', methods=['POST', 'PUT'])
+# def editCharacter(character_name):
+#     print(request.method)
+#     character = Character.query.filter_by(name=character_name).first()
+#     data = request.get_json()
+#     if request.method == "POST":
+#         character.info = request.form['info']
+#         db.session.commit()
+#     elif data:
+#         character.info = data['info']
+#         db.session.commit()
+#     # code = {'status' : 'Character doesn\'t exist'}
+#     # print(data['info'])
+#     # if character:
+#     #     code['status'] = 'Character Updated'
+#     #     print(code)
+#     #     return redirect(url_for('.homepage'))
+#     # return jsonify(code)
+#     return redirect(url_for('.homepage'))
