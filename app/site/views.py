@@ -38,11 +38,12 @@ def addCharacter():
 @mod.route('/delete/<character_name>', methods=['DELETE'])
 def deleteCharacter(character_name):
     character = Character.query.filter_by(name=character_name).first()
+    code = {200 : 'Character does not exist'}
     if character:
         db.session.delete(character)
         db.session.commit()
-        return 'Deleted Character'
-    return 'Character does not exist'
+        code[200] = 'Deleted Character'
+    return jsonify(code)
 
 @mod.route('/edit/<character_name>', methods=['PUT'])
 def editCharacter(character_name):
